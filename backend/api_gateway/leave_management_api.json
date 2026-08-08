@@ -1,0 +1,89 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "LeaveManagementAPI",
+    "version" : "2026-08-02 14:01:38UTC"
+  },
+  "servers" : [ {
+    "url" : "https://wctaatws13.execute-api.ap-south-1.amazonaws.com/{basePath}",
+    "variables" : {
+      "basePath" : {
+        "default" : ""
+      }
+    }
+  } ],
+  "paths" : {
+    "/leave/balance" : {
+      "get" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for GET /leave/balance"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:ap-south-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-south-1:020426223468:function:get_leave_balances/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/leave/pending" : {
+      "get" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for GET /leave/pending"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:ap-south-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-south-1:020426223468:function:get_pending_requests/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/leave/action" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /leave/action"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:ap-south-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-south-1:020426223468:function:process_manager_action/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/leave/apply" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /leave/apply"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:ap-south-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-south-1:020426223468:function:submit_leave_request/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    }
+  },
+  "x-amazon-apigateway-cors" : {
+    "allowMethods" : [ "OPTIONS", "POST" ],
+    "allowHeaders" : [ "authorization", "content-type" ],
+    "maxAge" : 0,
+    "allowCredentials" : false,
+    "allowOrigins" : [ "http://leave-management-app.s3-website.ap-south-1.amazonaws.com" ]
+  },
+  "x-amazon-apigateway-importexport-version" : "1.0"
+}
